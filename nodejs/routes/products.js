@@ -18,7 +18,7 @@ router.get('/:id', function (req, res, next) {
         return;
     }
 
-    res.render('index', { product });
+    res.render('products/item', { product });
 });
 
 module.exports = router;

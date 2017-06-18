@@ -11,7 +11,17 @@
 
             <div class="media-body">
                 <a href="/products/{{ product._id }}">
-                    <h4 class="media-heading">{{ product.title }}</h4>
+                    <h4 class="media-heading">
+                        {{ product.title }}
+
+                        {% if product.isActive %}
+                            <span class="label label-success pull-right">In Stock</span>
+                        {% endif %}
+
+                        {% if not product.isActive %}
+                            <span class="label label-danger pull-right">Sold out</span>
+                        {% endif %}
+                    </h4>
                 </a>
                 <p>${{ product.price }}</p>
             </div>
