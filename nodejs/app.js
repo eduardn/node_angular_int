@@ -7,14 +7,16 @@ var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var products = require('./routes/products');
+
+var menu = require('./utils/menu');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
-nunjucks.configure(app.get('views'), {
+var nunjucksEnv = nunjucks.configure(app.get('views'), {
     watch: true,
     express: app
 });
@@ -28,25 +30,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Menu middleware
+app.use(menu.setup);
+
+// Routes
 app.use('/', index);
-app.use('/users', users);
+app.use('/products', products);
+app.use('/contact', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
