@@ -8,6 +8,7 @@ var nunjucks = require('nunjucks');
 
 var index = require('./routes/index');
 var products = require('./routes/products');
+var contact = require('./routes/contact');
 
 var menu = require('./utils/menu');
 
@@ -36,7 +37,7 @@ app.use(menu.setup);
 // Routes
 app.use('/', index);
 app.use('/products', products);
-app.use('/contact', products);
+app.use('/contact', contact);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
