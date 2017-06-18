@@ -1,3 +1,40 @@
+# Setup
+
+### Node App
+
+#### Requirements
+- Node (>= v8.0.0)
+- npm (>= 5.0.0)
+- nodemon (optional)
+
+#### Starting the app
+
+##### Install dependencies (once)
+```
+    $ npm install
+```
+
+##### Start with npm
+
+```
+    $ npm start
+```
+
+##### Start with npm + watcher
+
+```
+    $ npm run start-watch
+```
+
+##### Start with node
+
+```
+    $ node bin/www
+```
+
+The application will start on port 3000 by default, you can change it by setting
+the PORT environment variable
+
 # Node.js & AngularJS practice app
 
 Fork this repository and commit to your repository
